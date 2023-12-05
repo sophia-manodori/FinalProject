@@ -22,8 +22,7 @@ public class ReadFile {
         return i;
       }
 
-    public static String[][] read(String[] args) {
-        String filename = "FILENAME";
+    public static String[][] read(String filename, int n) {
         Scanner file = null;
         try {
             file = new Scanner(new File(filename));
@@ -31,12 +30,12 @@ public class ReadFile {
             System.err.println("Cannot locate file.");
             System.exit(-1);
         }
-        int n = fileLength(filename);
+        //ArrayList<ArrayList<String>> people = new ArrayList<>();
         String[][] people = new String[n][];
 
         for(int i = 0; i<n; i++) {
             String line = file.nextLine();
-            String[] fields = line.split("\\s+");
+            String[] fields = line.split("[,]+");
             people[i] = fields; 
         }
         return people;

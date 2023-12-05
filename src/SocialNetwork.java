@@ -39,6 +39,20 @@ public class SocialNetwork {
         }
     }
 
+    public void addPerson(String[] person) {
+        this.people.put(person[0], people.size());
+        this.network.addNode(person);
+        if(!(person[8].equals("NA")) && people.containsKey(person[8])) {
+                this.network.putEdge(person, data[people.get(person[8])]);
+        }
+        if(!(person[9].equals("NA")) && people.containsKey(person[9])) {
+                this.network.putEdge(person, data[people.get(person[9])]);
+        }
+        if(!(person[10].equals("NA")) && people.containsKey(person[10])) {
+                this.network.putEdge(person, data[people.get(person[9])]);
+        }
+    }
+
     public void findFriends(String name, int degree) {
 
     }

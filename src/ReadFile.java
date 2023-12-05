@@ -33,7 +33,7 @@ public class ReadFile {
         String[][] people = new String[n][];
 
         for(int i = 0; i<n; i++) {
-            String line = file.nextLine();
+            String line = file.nextLine().toLowerCase();
             String[] fields = line.split("[,]+");
             people[i] = fields; 
         }

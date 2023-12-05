@@ -1,7 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
-import java.util.ArrayList;
 
 public class ReadFile {
 
@@ -42,4 +41,9 @@ public class ReadFile {
 
     } 
 
+    public static void main(String[] args) {
+        int n = fileLength("Test.csv");
+        String[][] data = read("Test.csv", n);
+        System.out.println(data[0][8]);
+    }
 }

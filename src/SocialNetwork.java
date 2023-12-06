@@ -41,7 +41,7 @@ public class SocialNetwork {
         this.people.put(person[0], person);
         this.network.addNode(person[0]);
         for(int i = 0; i<4; i++) {
-            if(!(person[8].equals("na"))) {
+            if(!(person[8+i].equals("na"))) {
                     this.network.putEdge(person[0], person[i+8]);
             }
         }

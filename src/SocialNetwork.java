@@ -56,6 +56,18 @@ public class SocialNetwork {
 
     }
 
+     public void findMutualHobbie(String name, int degree) {
+
+    }
+
+     public void findMutualTVSeries(String name, int degree) {
+
+    }
+
+      public void findMutualBook(String name, int degree) {
+
+    }
+
     public void findMutualFriends(String name1, String name2, int degree) {
 
     }

@@ -3,6 +3,7 @@
     "java.project.outputPath": "bin",
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
-        "/Users/sophia/Documents/SmithCSC210/climatedata/com.google.guava_32.1.2.jre.jar"
+        "/Users/sophia/Documents/SmithCSC210/climatedata/com.google.guava_32.1.2.jre.jar",
+        "/Users/hmaloul/Downloads/com.google.guava_32.1.2.jre.jar"
     ]
 }

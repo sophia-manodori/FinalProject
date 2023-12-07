@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.awt.Color;
 
 /** Social Network Class */
 public class SocialNetwork {
@@ -46,7 +48,16 @@ public class SocialNetwork {
             }
         }
     }
-
+    /**returns arraylist of people with a certain major to then highlight in displayed network*/
+    public ArrayList<String> highlightMajor(String major) {
+        ArrayList<String> names = new ArrayList<>();
+        for(String node : network.nodes()) {
+            if(people.containsKey(node) && people.get(node)[2].equals(major)) {
+                names.add(node);
+            }
+        }
+        return names;
+    }
     //use nodes
     public void findFriends(String name, int degree) {
 
@@ -81,6 +92,13 @@ public class SocialNetwork {
         System.out.println(test.network);
 
         GraphDisplay d3 = new GraphDisplay(test.network);
+
+        ArrayList<String> majors = test.highlightMajor("computer science");
+        for(int i = 0; i< majors.size(); i++) {
+            System.out.println(majors.get(i));
+            d3.setColor(majors.get(i), Color.RED);  
+        }
+        
     
     }
 }

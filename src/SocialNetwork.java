@@ -97,18 +97,19 @@ public class SocialNetwork {
             }
              return null;
         }
-
-        ArrayList<String> mutualFriends = new ArrayList<>();
-        //I think this is now finding everyone who has the name2 as a friend
-        for(String node : network.successors(name1)) {
-             for(String friend : network.successors(node)) {
-             if(friend.equals(name2)) {
-                mutualFriends.add(node);
+            else{
+            ArrayList<String> mutualFriends = new ArrayList<>();
+            //I think this is now finding everyone who has the name2 as a friend
+            for(String node : network.successors(name1)) {
+                for(String friend : network.successors(node)) {
+                if(friend.equals(name2)) {
+                    mutualFriends.add(node);
+                }
             }
+            }
+            System.out.println("Mutual friends of degree " + degree + " for " + name1 + " and " + name2 + ": " + mutualFriends);
+            return mutualFriends;
         }
-        }
-        System.out.println("Mutual friends of degree " + degree + " for " + name1 + " and " + name2 + ": " + mutualFriends);
-        return mutualFriends;
     }
 
     public static void main(String[] args) {

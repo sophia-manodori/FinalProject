@@ -102,9 +102,7 @@ public class SocialNetwork {
         ArrayList<String> mutualFriends = new ArrayList<>();
         //I think this is now finding everyone who has the name2 as a friend
         for(String node : network.successors(name1)) {
-            System.out.println("node:" + node);
              for(String friend : network.successors(node)) {
-                System.out.println(friend);
              if(friend.equals(name2)) {
                 mutualFriends.add(node);
             }

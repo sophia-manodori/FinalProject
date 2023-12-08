@@ -60,10 +60,10 @@ public class SocialNetwork {
     }
     //use nodes
     public void findFriends(String name, int degree) {
-
+        
     }
 
-    public void findMutualMovie(String name, int degree) {
+    public void findMutualMovie(String name1, String name2, int degree) {
 
     }
 
@@ -79,8 +79,36 @@ public class SocialNetwork {
 
     }
 
-    public void findMutualFriends(String name1, String name2, int degree) {
+    public ArrayList<String> findMutualFriends(String name1, String name2, int degree) {
 
+        //checks that the degree is more than 0
+        if (degree <= 0) {
+            System.out.println("The degree should be greater than 0.");
+        }
+        //check if the names exist in the network
+        if (!network.nodes().contains(name1.toLowerCase()) || !network.nodes().contains(name2.toLowerCase())) {
+
+            if (!network.nodes().contains(name1.toLowerCase())) {
+                System.out.println("Name '" + name1 + "' does not exist in the network.");
+            }
+    
+            if (!network.nodes().contains(name2.toLowerCase())) {
+                System.out.println("Name '" + name2 + "' does not exist in the network.");
+            }
+             return null;
+        }
+
+        ArrayList<String> mutualFriends = new ArrayList<>();
+        
+        for(String node : network.nodes()) {
+             for(int i = 0; i<8; i++) {
+            if(people.containsKey(node) && people.get(node)[8+i].equals(name2)) {
+                mutualFriends.add(node);
+            }
+        }
+        }
+        System.out.println("Mutual friends of degree " + degree + " for " + name1 + " and " + name2 + ": " + mutualFriends);
+        return mutualFriends;
     }
 
     public static void main(String[] args) {
@@ -99,6 +127,7 @@ public class SocialNetwork {
             d3.setColor(majors.get(i), Color.RED);  
         }
         
+       test.findMutualFriends("Lucia Qin","Lily Smetzer", 1);
     
     }
 }

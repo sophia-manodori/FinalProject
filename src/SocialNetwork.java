@@ -126,8 +126,8 @@ public class SocialNetwork {
             System.out.println(majors.get(i));
             d3.setColor(majors.get(i), Color.RED);  
         }
-        
-       test.findMutualFriends("Lucia Qin","Lily Smetzer", 1);
+        //test finding mutual friends method
+       test.findMutualFriends("lucia qin","lily smetzer", 1);
     
     }
 }

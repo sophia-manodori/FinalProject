@@ -70,8 +70,38 @@ public class SocialNetwork {
 
     }
 
-     public void findMutualHobbie(String name, int degree) {
+     public ArrayList<String> findMutualHobbie(String name, int degree) {
+        ArrayList<String> names = new ArrayList<>();
+         if (!network.nodes().contains(name.toLowerCase())) {
+                throw new RuntimeException("Name '" + name + "' does not exist in the network.");
+        } 
+        String yourHobbie = people.get(name)[6];
 
+        for(String node : network.successors(name)) {
+            if(people.containsKey(node)){
+                String hobbie = people.get(node)[6];
+                System.out.println("hobbie:" + hobbie + "of " + node);
+                if(hobbie.equals(yourHobbie)){
+                    names.add(node);
+                }
+                if(degree > 1) {
+                    findMutualHobbie(node, degree-1);
+                }
+            }
+        }   
+        return names;
+    }
+
+    public void findHobbie(String hobbie){
+        ArrayList<String> names = new ArrayList<>();
+        for(String node : network.nodes()) {
+            if(people.containsKey(node)){
+                if (people.get(node)[6].equals(hobbie)) {
+                    names.add(node);
+                }
+            }
+        }
+        System.out.println(names.toString());
     }
 
      public void findMutualTVSeries(String name, int degree) {
@@ -135,6 +165,7 @@ public class SocialNetwork {
         System.out.println(test.network.successors("lily smetzer").toString());
         //test finding mutual friends method
        test.findMutualFriends("lucia qin","lily smetzer", 1);
+       test.findHobbie("reading");
     
     }
 }

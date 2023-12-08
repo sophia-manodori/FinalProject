@@ -34,7 +34,9 @@ public class SocialNetwork {
             
             for(int i = 0; i<8; i++) {
                 //if()
+                if(!(fields[8+i].equals("na"))) {
                 network.putEdge(fields[0], fields[8+i]);
+                }
             }
         }
     }
@@ -43,7 +45,7 @@ public class SocialNetwork {
     public void addPerson(String[] person) {
         this.people.put(person[0], person);
         this.network.addNode(person[0]);
-        for(int i = 0; i<7; i++) {
+        for(int i = 0; i<8; i++) {
             if(!(person[8+i].equals("na"))) {
                     this.network.putEdge(person[0], person[i+8]);
             }
@@ -130,8 +132,9 @@ public class SocialNetwork {
             d3.setColor(majors.get(i), Color.RED);  
         }
         System.out.println(test.network.successors("lucia qin").toString());
+        System.out.println(test.network.successors("lily smetzer").toString());
         //test finding mutual friends method
-       //test.findMutualFriends("lucia qin","lily smetzer", 1);
+       test.findMutualFriends("lucia qin","lily smetzer", 1);
     
     }
 }

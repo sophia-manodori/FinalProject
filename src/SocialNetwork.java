@@ -31,7 +31,8 @@ public class SocialNetwork {
             String[] fields = line.split("[,]+");
             System.out.println(fields[0]);
             people.put(fields[0], fields);
-            for(int i = 0; i<4; i++) {
+            
+            for(int i = 0; i<8; i++) {
                 //if()
                 network.putEdge(fields[0], fields[8+i]);
             }
@@ -101,7 +102,9 @@ public class SocialNetwork {
         ArrayList<String> mutualFriends = new ArrayList<>();
         //I think this is now finding everyone who has the name2 as a friend
         for(String node : network.successors(name1)) {
+            System.out.println("node:" + node);
              for(String friend : network.successors(node)) {
+                System.out.println(friend);
              if(friend.equals(name2)) {
                 mutualFriends.add(node);
             }
@@ -126,8 +129,9 @@ public class SocialNetwork {
             System.out.println(majors.get(i));
             d3.setColor(majors.get(i), Color.RED);  
         }
+        System.out.println(test.network.successors("lucia qin").toString());
         //test finding mutual friends method
-       test.findMutualFriends("lucia qin","lily smetzer", 1);
+       //test.findMutualFriends("lucia qin","lily smetzer", 1);
     
     }
 }

@@ -85,14 +85,15 @@ public class SocialNetwork {
                     names.add(node);
                 }
                 if(degree > 1) {
-                    findMutualHobbie(node, degree-1);
+                    ArrayList<String> list = findMutualHobbie(node, degree-1);
+                    names.addAll(list);
                 }
             }
         }   
         return names;
     }
 
-    public void findHobbie(String hobbie){
+    public ArrayList<String> findHobbie(String hobbie){
         ArrayList<String> names = new ArrayList<>();
         for(String node : network.nodes()) {
             if(people.containsKey(node)){
@@ -101,7 +102,7 @@ public class SocialNetwork {
                 }
             }
         }
-        System.out.println(names.toString());
+        return names;
     }
 
      public void findMutualTVSeries(String name, int degree) {

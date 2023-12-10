@@ -1,0 +1,18 @@
+Our data is in the form of a csv, rendered from a spreadsheet of the form respondants. 
+The link to the input form is below: 
+https://forms.gle/Ks3MzgNGENnPcZ6j9
+
+The rows are individual responders. The columns and their corresponding indeces are 
+
+Name [0] (full name)
+Year [1] (as freshman, sophomore, junior, senior)
+Major [2]
+Favorite TV Show [3]
+Favorite Movie [4]
+Favorite Book [5]
+Main Hobbie [6]
+Roomate's Name [7]
+Connection/Someone they know [8-17] (full name)
+
+Empty values are listed as "NA". We have a total of __ entries. All data is categorical, and only minor changes were made in order to make the data
+readable (i.e removing uneccesary spaces, correcting name spelling). 

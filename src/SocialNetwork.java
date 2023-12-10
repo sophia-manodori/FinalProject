@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.awt.Color;
-
+import java.util.Set;
 /** Social Network Class */
 public class SocialNetwork {
     public MutableGraph<String> network; /** graph */
@@ -39,6 +39,11 @@ public class SocialNetwork {
                 }
             }
         }
+    }
+
+    public int numberFriends(String name) {
+        Set<String> nodes = network.adjacentNodes(name);
+        return nodes.size();
     }
     
     /** temporarily adds person for sake of interaction, won't add them to the data though so people won't be able to add them ...  */

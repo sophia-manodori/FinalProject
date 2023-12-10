@@ -18,15 +18,20 @@ public class main {
         //maybe check here if we want to highlight a major?
         boolean play = true; 
         while(true) {
-            System.out.println("intro"); //this will be where we list the options 
+            System.out.println("What would you like to do? type 'hobbie' to find mutual hobbie. Type 'number' to see the number of connections a person has"); //this will be where we list the options 
             String response = input.nextLine();
             //below is the option of finding all people with the same hobbie
-            if(response.equals("find mutual hobbie")) {
+            if(response.equals("hobbie")) {
                 System.out.println("what hobbie?");
                 String hobbie = input.nextLine();
                 ArrayList<String> list = test.findHobbie(hobbie);
                 System.out.println("The people with the hobbie" + hobbie + " are: " + list.toString());
-            } //other options will go here
+            } else if(response.equals("number")) {
+                System.out.println("what person?");
+                String person = input.nextLine();
+                int numberfriends= test.numberFriends(person);
+                System.out.println("The number of friends of " + person + " are " + numberfriends);
+            }//other options will go here
             else {
                 System.out.println("please enter a valid option");
             }

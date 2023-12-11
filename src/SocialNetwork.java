@@ -65,6 +65,16 @@ public class SocialNetwork {
         }
     }
 
+    public ArrayList<String> movieRecommender(String tvShow, String book) {
+        ArrayList<String> recs = new ArrayList<>();
+        for(String node : this.people.keySet()) {
+            if(this.people.get(node)[5].equals(tvShow) || this.people.get(node)[4].equals(book)) {
+                recs.add(node);
+            }
+        } 
+        return recs;
+    }
+
     /**
      * returns arraylist of people with a certain major to then highlight in
      * displayed network

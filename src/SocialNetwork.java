@@ -64,12 +64,12 @@ public class SocialNetwork {
             }
         }
     }
-
+     /** takes a tv show and book and returns the favorite movies of the people who had that favorite tv show and book  */
     public ArrayList<String> movieRecommender(String tvShow, String book) {
         ArrayList<String> recs = new ArrayList<>();
         for(String node : this.people.keySet()) {
             if(this.people.get(node)[5].equals(tvShow) || this.people.get(node)[4].equals(book)) {
-                recs.add(node);
+                recs.add(people.get(node)[3]);
             }
         } 
         return recs;

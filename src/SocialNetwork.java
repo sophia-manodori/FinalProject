@@ -8,11 +8,15 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.awt.Color;
 import java.util.Set;
+
 /** Social Network Class */
 public class SocialNetwork {
-    public MutableGraph<String> network; /** graph */
-    public HashMap<String, String[]> people = new HashMap<>(); /** hashmap with people and location in data */
- 
+    public MutableGraph<String> network;
+    /** graph */
+    public HashMap<String, String[]> people = new HashMap<>();
+
+    /** hashmap with people and location in data */
+
     /** Constructor */
     public SocialNetwork(String filename) {
         Scanner file = null;
@@ -22,20 +26,20 @@ public class SocialNetwork {
             System.err.println("Cannot locate file.");
             System.exit(-1);
         }
-        //ArrayList<ArrayList<String>> people = new ArrayList<>();
-        this.people = new HashMap<>(); 
+        // ArrayList<ArrayList<String>> people = new ArrayList<>();
+        this.people = new HashMap<>();
         this.network = GraphBuilder.undirected().build();
 
-        while(file.hasNextLine()) {
+        while (file.hasNextLine()) {
             String line = file.nextLine().toLowerCase();
             String[] fields = line.split("[,]+");
-            System.out.println(fields[0]);
+            //System.out.println(fields[0]);
             people.put(fields[0], fields);
-            
-            for(int i = 0; i<8; i++) {
-                //if()
-                if(!(fields[8+i].equals("na"))) {
-                network.putEdge(fields[0], fields[8+i]);
+
+            for (int i = 0; i < 8; i++) {
+                // if()
+                if (!(fields[8 + i].equals("na"))) {
+                    network.putEdge(fields[0], fields[8 + i]);
                 }
             }
         }
@@ -45,133 +49,216 @@ public class SocialNetwork {
         Set<String> nodes = network.adjacentNodes(name);
         return nodes.size();
     }
-    
-    /** temporarily adds person for sake of interaction, won't add them to the data though so people won't be able to add them ...  */
+
+    /**
+     * temporarily adds person for sake of interaction, won't add them to the data
+     * though so people won't be able to add them ...
+     */
     public void addPerson(String[] person) {
         this.people.put(person[0], person);
         this.network.addNode(person[0]);
-        for(int i = 0; i<8; i++) {
-            if(!(person[8+i].equals("na"))) {
-                    this.network.putEdge(person[0], person[i+8]);
+        for (int i = 0; i < 8; i++) {
+            if (!(person[8 + i].equals("na"))) {
+                this.network.putEdge(person[0], person[i + 8]);
             }
         }
     }
-    /**returns arraylist of people with a certain major to then highlight in displayed network*/
+
+    /**
+     * returns arraylist of people with a certain major to then highlight in
+     * displayed network
+     */
     public ArrayList<String> highlightMajor(String major) {
         ArrayList<String> names = new ArrayList<>();
-        for(String node : network.nodes()) {
-            if(people.containsKey(node) && people.get(node)[2].equals(major)) {
+        for (String node : network.nodes()) {
+            if (people.containsKey(node) && people.get(node)[2].equals(major)) {
                 names.add(node);
             }
         }
         return names;
     }
-    //use nodes
+
+    // use nodes
     public void findFriends(String name, int degree) {
-        
+
     }
 
     public void findMutualMovie(String name1, String name2, int degree) {
 
     }
 
-     public ArrayList<String> findMutualHobbie(String name, int degree) {
+    public ArrayList<String> findMutualHobbie(String name, int degree) {
         ArrayList<String> names = new ArrayList<>();
-         if (!network.nodes().contains(name.toLowerCase())) {
-                throw new RuntimeException("Name '" + name + "' does not exist in the network.");
-        } 
+        if (!network.nodes().contains(name.toLowerCase())) {
+            throw new RuntimeException("Name '" + name + "' does not exist in the network.");
+        }
         String yourHobbie = people.get(name)[6];
 
-        for(String node : network.successors(name)) {
-            if(people.containsKey(node)){
+        for (String node : network.successors(name)) {
+            if (people.containsKey(node)) {
                 String hobbie = people.get(node)[6];
-                System.out.println("hobbie:" + hobbie + "of " + node);
-                if(hobbie.equals(yourHobbie)){
+                System.out.println("hobbie:" + hobbie + " of " + node);
+                if (hobbie.equals(yourHobbie)) {
                     names.add(node);
                 }
-                if(degree > 1) {
-                    ArrayList<String> list = findMutualHobbie(node, degree-1);
+                if (degree > 1) {
+                    ArrayList<String> list = findMutualHobbie(node, degree - 1);
                     names.addAll(list);
                 }
             }
-        }   
+        }
         return names;
     }
 
-    public ArrayList<String> findHobbie(String hobbie){
+    public ArrayList<String> findHobbie(String hobbie) {
         ArrayList<String> names = new ArrayList<>();
-        for(String node : network.nodes()) {
-            if(people.containsKey(node)){
+        for (String node : network.nodes()) {
+            if (people.containsKey(node)) {
                 if (people.get(node)[6].equals(hobbie)) {
                     names.add(node);
                 }
             }
         }
+
+        System.out.println(" People who like " + hobbie + " are: " + names);
         return names;
     }
 
-     public void findMutualTVSeries(String name, int degree) {
+    public void findMutualTVSeries(String name, int degree) {
 
     }
 
-      public void findMutualBook(String name, int degree) {
+    public void findMutualBook(String name, int degree) {
 
     }
 
     public ArrayList<String> findMutualFriends(String name1, String name2, int degree) {
 
-        //checks that the degree is more than 0
+        // checks that the degree is more than 0
         if (degree <= 0) {
             System.out.println("The degree should be greater than 0.");
         }
-        //check if the names exist in the network
+        // check if the names exist in the network
         if (!network.nodes().contains(name1.toLowerCase()) || !network.nodes().contains(name2.toLowerCase())) {
 
             if (!network.nodes().contains(name1.toLowerCase())) {
                 System.out.println("Name '" + name1 + "' does not exist in the network.");
             }
-    
+
             if (!network.nodes().contains(name2.toLowerCase())) {
                 System.out.println("Name '" + name2 + "' does not exist in the network.");
             }
-             return null;
-        }
-        else {
+            return null;
+        } else {
 
             ArrayList<String> mutualFriends = new ArrayList<>();
-            //I think this is now finding everyone who has the name2 as a friend
-            for(String node : network.successors(name1)) {
-                for(String friend : network.successors(node)) {
-                if(friend.equals(name2)) {
-                    mutualFriends.add(node);
+            // I think this is now finding everyone who has the name2 as a friend
+            for (String node : network.successors(name1)) {
+                for (String friend : network.successors(node)) {
+                    if (friend.equals(name2)) {
+                        mutualFriends.add(node);
+                    }
                 }
             }
-            }
-            System.out.println("Mutual friends of degree " + degree + " for " + name1 + " and " + name2 + ": " + mutualFriends);
+            System.out.println(
+                    "Mutual friends of degree " + degree + " for " + name1 + " and " + name2 + ": " + mutualFriends);
             return mutualFriends;
         }
     }
 
     public static void main(String[] args) {
-        SocialNetwork test = new SocialNetwork("Test.csv");
-        for(String node : test.network.nodes()) {
-            System.out.println(node);
+        // SocialNetwork test = new SocialNetwork("Test.csv");
+        // for(String node : test.network.nodes()) {
+        // System.out.println(node);
+        // }
+
+        // System.out.println(test.network);
+
+        // GraphDisplay d3 = new GraphDisplay(test.network);
+
+        // ArrayList<String> majors = test.highlightMajor("computer science");
+        // for(int i = 0; i< majors.size(); i++) {
+        // System.out.println(majors.get(i));
+        // d3.setColor(majors.get(i), Color.RED);
+        // }
+        // System.out.println(test.network.successors("lucia qin").toString());
+        // System.out.println(test.network.successors("lily smetzer").toString());
+        // //test finding mutual friends method
+        // test.findMutualFriends("lucia qin","lily smetzer", 1);
+        // test.findHobbie("reading");
+
+        // program
+        System.out.println("");
+        System.out.println("Welcome to the Interactive Smith Social Network !");
+        System.out.println("This network allows you to find friends at Smith College, blah blah blah");
+            // I am not sure what to say hehehehe, should we like make it more fun or what
+        SocialNetwork socialNetwork = new SocialNetwork("Test.csv");
+
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            System.out.println("");
+            System.out.println("Options:");
+            System.out.println("1. Display all nodes in the network");
+            System.out.println("2. Find mutual friends between two people");
+            System.out.println("3. Find people with a specific hobby");
+            System.out.println("4. Find mutual hobbies for a person");
+            System.out.println("0. Exit");
+
+            System.out.print("Enter your choice: ");
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // Consume the newline character
+
+            switch (choice) {
+                case 1:
+                    System.out.println("Nodes in the network:");
+                    for (String node : socialNetwork.network.nodes()) {
+                        System.out.println(node);
+                    }
+                    break;
+
+                case 2:
+                    System.out.print("Enter the first person's name: ");
+                    String name1 = scanner.nextLine();
+                    System.out.print("Enter the second person's name: ");
+                    String name2 = scanner.nextLine();
+                    System.out.print("Enter the degree: ");
+                    int degree = scanner.nextInt();
+                    socialNetwork.findMutualFriends(name1, name2, degree);
+
+                    break;
+
+                case 3:
+                    System.out.print("Enter the hobby to search for: ");
+                    String hobbie = scanner.nextLine();
+                    socialNetwork.findHobbie(hobbie);
+                   
+                    break;
+
+                case 4:
+                    System.out.print("Enter the person's name: ");
+                    String person = scanner.nextLine();
+                    System.out.print("Enter the degree: ");
+                    degree = scanner.nextInt();
+                    socialNetwork.findMutualHobbie(person, degree);
+
+                    break;
+
+                case 0:
+                    System.out.println("Exiting the program.");
+                    System.exit(0);
+
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+
+            // Ask the user if they want to perform more operations
+            System.out.print("Do you want to explore more? (yes/no): ");
+            String continueChoice = scanner.next().toLowerCase();
+            if (!continueChoice.equals("yes")) {
+                System.out.println("Exiting the program.");
+                System.exit(0);
+            }
         }
-
-        System.out.println(test.network);
-
-        GraphDisplay d3 = new GraphDisplay(test.network);
-
-        ArrayList<String> majors = test.highlightMajor("computer science");
-        for(int i = 0; i< majors.size(); i++) {
-            System.out.println(majors.get(i));
-            d3.setColor(majors.get(i), Color.RED);  
-        }
-        System.out.println(test.network.successors("lucia qin").toString());
-        System.out.println(test.network.successors("lily smetzer").toString());
-        //test finding mutual friends method
-       test.findMutualFriends("lucia qin","lily smetzer", 1);
-       test.findHobbie("reading");
-    
     }
+
 }

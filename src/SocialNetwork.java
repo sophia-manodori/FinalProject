@@ -8,6 +8,7 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.awt.Color;
 import java.util.Set;
+import java.util.HashSet;
 
 /** Social Network Class */
 public class SocialNetwork {
@@ -87,12 +88,12 @@ public class SocialNetwork {
 
     }
 
-    public ArrayList<String> findMutualHobbie(String name, int degree) {
+    public ArrayList<String> findMutualHobbie(String name, String yourHobbie, int degree) {
         ArrayList<String> names = new ArrayList<>();
         if (!network.nodes().contains(name.toLowerCase())) {
             throw new RuntimeException("Name '" + name + "' does not exist in the network.");
         }
-        String yourHobbie = people.get(name)[6];
+        //String yourHobbie = people.get(name)[6];
 
         for (String node : network.successors(name)) {
             if (people.containsKey(node)) {
@@ -102,7 +103,7 @@ public class SocialNetwork {
                     names.add(node);
                 }
                 if (degree > 1) {
-                    ArrayList<String> list = findMutualHobbie(node, degree - 1);
+                    ArrayList<String> list = findMutualHobbie(node, yourHobbie, degree - 1);
                     names.addAll(list);
                 }
             }
@@ -132,7 +133,7 @@ public class SocialNetwork {
 
     }
 
-    public ArrayList<String> findMutualFriends(String name1, String name2, int degree) {
+    public Set<String> findMutualFriends(String name1, String name2, int degree) {
 
         // checks that the degree is more than 0
         if (degree <= 0) {
@@ -150,15 +151,23 @@ public class SocialNetwork {
             }
             return null;
         } else {
-
-            ArrayList<String> mutualFriends = new ArrayList<>();
+//this needs to be a set
+            Set<String> mutualFriends = new HashSet<>();
+            //Set<String> traversed = new HashSet<>();
             // I think this is now finding everyone who has the name2 as a friend
             for (String node : network.successors(name1)) {
                 for (String friend : network.successors(node)) {
-                    if (friend.equals(name2)) {
+                    //System.out.println(friend);
+                    if (friend.equals(name2) && !friend.equals(name1)) {
                         mutualFriends.add(node);
                     }
                 }
+                if(degree>1) {
+                        Set<String> friends = findMutualFriends(node, name2, degree-1);
+                        System.out.println(friends.toString());
+                        mutualFriends.addAll(friends);
+                    }
+
             }
             System.out.println(
                     "Mutual friends of degree " + degree + " for " + name1 + " and " + name2 + ": " + mutualFriends);
@@ -167,10 +176,12 @@ public class SocialNetwork {
     }
 
     public static void main(String[] args) {
-        // SocialNetwork test = new SocialNetwork("Test.csv");
+         SocialNetwork test = new SocialNetwork("Test.csv");
         // for(String node : test.network.nodes()) {
         // System.out.println(node);
         // }
+            ArrayList<String> hobbies = test.findMutualHobbie("karen bekhazj", "reading", 4);
+            System.out.println(hobbies.toString());
 
         // System.out.println(test.network);
 
@@ -184,7 +195,12 @@ public class SocialNetwork {
         // System.out.println(test.network.successors("lucia qin").toString());
         // System.out.println(test.network.successors("lily smetzer").toString());
         // //test finding mutual friends method
-        // test.findMutualFriends("lucia qin","lily smetzer", 1);
+        test.findMutualFriends("lucia qin","lily smetzer", 1);
+        test.findMutualFriends("lucia qin","lily smetzer", 2);
+            test.findMutualFriends("lucia qin","hala maloul", 4);
+
+
+
         // test.findHobbie("reading");
 
         // program

@@ -63,7 +63,7 @@ public class Main {
                     String person = scanner.nextLine();
                     System.out.print("Enter the degree: ");
                     degree = scanner.nextInt();
-                    socialNetwork.findMutualHobbie(person, degree);
+                    socialNetwork.findMutualHobbie(person, socialNetwork.people.get(person)[6], degree);
 
                     break;
 

@@ -195,8 +195,9 @@ public class SocialNetwork {
         // System.out.println(test.network.successors("lucia qin").toString());
         // System.out.println(test.network.successors("lily smetzer").toString());
         // //test finding mutual friends method
-        test.findMutualFriends("lucia qin","lily smetzer", 1);
-        test.findMutualFriends("lucia qin","lily smetzer", 2);
+        //test.findMutualFriends("lucia qin","lily smetzer", 1);
+        //test.findMutualFriends("lucia qin","lily smetzer", 2);
+        test.findMutualFriends("lucia qin","hala maloul", 1);
             test.findMutualFriends("lucia qin","hala maloul", 4);
 
 

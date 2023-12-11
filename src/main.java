@@ -1,4 +1,10 @@
 import java.util.Scanner;
+
+import javax.sound.sampled.SourceDataLine;
+
+
+import javax.swing.plaf.synth.SynthToolTipUI;
+
 import java.util.ArrayList;
 
 public class Main {
@@ -26,6 +32,7 @@ public class Main {
             System.out.println("2. Find mutual friends between two people");
             System.out.println("3. Find people with a specific hobby");
             System.out.println("4. Find mutual hobbies for a person");
+            System.out.println("5. Find book recommendations");
             System.out.println("0. Exit");
 
             System.out.print("Enter your choice: ");
@@ -66,6 +73,14 @@ public class Main {
                     socialNetwork.findMutualHobbie(person, socialNetwork.people.get(person)[6], degree);
 
                     break;
+                
+                case 5: 
+                    System.out.println("Enter your favorite movie:");
+                    String movie = scanner.nextLine();
+                    System.out.println("Enter your favorite tv show");
+                    String show = scanner.nextLine();
+                    ArrayList<String> recs = socialNetwork.bookRecommender(movie, show);
+                    System.out.println("Your recommended books are: " + recs.toString());
 
                 case 0:
                     System.out.println("Exiting the program.");

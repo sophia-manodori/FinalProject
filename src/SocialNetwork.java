@@ -68,7 +68,27 @@ public class SocialNetwork {
     public ArrayList<String> movieRecommender(String tvShow, String book) {
         ArrayList<String> recs = new ArrayList<>();
         for(String node : this.people.keySet()) {
-            if(this.people.get(node)[5].equals(tvShow) || this.people.get(node)[4].equals(book)) {
+            if(this.people.get(node)[3].equals(tvShow) || this.people.get(node)[5].equals(book)) {
+                recs.add(people.get(node)[4]);
+            }
+        } 
+        return recs;
+    }
+
+    public ArrayList<String> bookRecommender(String movie, String tvshow) {
+        ArrayList<String> recs = new ArrayList<>();
+        for(String node : this.people.keySet()) {
+            if(this.people.get(node)[3].equals(tvshow) || this.people.get(node)[4].equals(movie)) {
+                recs.add(people.get(node)[5]);
+            }
+        } 
+        return recs;
+    }
+
+    public ArrayList<String> tvRecommender(String movie, String book) {
+        ArrayList<String> recs = new ArrayList<>();
+        for(String node : this.people.keySet()) {
+            if(this.people.get(node)[5].equals(book) || this.people.get(node)[4].equals(movie)) {
                 recs.add(people.get(node)[3]);
             }
         } 
@@ -195,7 +215,7 @@ public class SocialNetwork {
 
         // System.out.println(test.network);
 
-        // GraphDisplay d3 = new GraphDisplay(test.network);
+        //GraphDisplay d3 = new GraphDisplay(test.network);
 
         // ArrayList<String> majors = test.highlightMajor("computer science");
         // for(int i = 0; i< majors.size(); i++) {
@@ -209,7 +229,8 @@ public class SocialNetwork {
         //test.findMutualFriends("lucia qin","lily smetzer", 2);
         test.findMutualFriends("lucia qin","hala maloul", 1);
             test.findMutualFriends("lucia qin","hala maloul", 4);
-
+        ArrayList<String> books = test.bookRecommender("but i’m a cheerleader", "avatar the last air bender");
+        System.out.println(books.toString());
 
 
         // test.findHobbie("reading");

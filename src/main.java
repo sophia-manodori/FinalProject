@@ -4,8 +4,9 @@ import javax.sound.sampled.SourceDataLine;
 
 
 import javax.swing.plaf.synth.SynthToolTipUI;
-
+import java.awt.Color;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Main {
     public static boolean yesNoReader (String input) {
@@ -24,6 +25,8 @@ public class Main {
             // I am not sure what to say hehehehe, should we like make it more fun or what
         SocialNetwork socialNetwork = new SocialNetwork("Test.csv");
 
+        //GraphDisplay d3 = new GraphDisplay(socialNetwork.network);
+
         Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.println("");
@@ -33,6 +36,8 @@ public class Main {
             System.out.println("3. Find people with a specific hobby");
             System.out.println("4. Find mutual hobbies for a person");
             System.out.println("5. Find book recommendations");
+            System.out.println("6. Find movie recommendations");
+            System.out.println("7. Display the social network");
             System.out.println("0. Exit");
 
             System.out.print("Enter your choice: ");
@@ -54,7 +59,8 @@ public class Main {
                     String name2 = scanner.nextLine();
                     System.out.print("Enter the degree: ");
                     int degree = scanner.nextInt();
-                    socialNetwork.findMutualFriends(name1, name2, degree);
+                    HashSet<String> mutuals = (HashSet<String>)socialNetwork.findMutualFriends(name1, name2, degree);
+                     System.out.print("The mutual friends of " + name1 + "and "+ name2 + "are:" + mutuals.toString());
 
                     break;
 
@@ -70,8 +76,8 @@ public class Main {
                     String person = scanner.nextLine();
                     System.out.print("Enter the degree: ");
                     degree = scanner.nextInt();
-                    socialNetwork.findMutualHobbie(person, socialNetwork.people.get(person)[6], degree);
-
+                    HashSet<String> hobbys = socialNetwork.findMutualHobbie(person, socialNetwork.people.get(person)[6], degree);
+                    System.out.print("The people of degree " + degree + "with the hobbie "+ "are:" + hobbys.toString());
                     break;
                 
                 case 5: 
@@ -81,7 +87,21 @@ public class Main {
                     String show = scanner.nextLine();
                     ArrayList<String> recs = socialNetwork.bookRecommender(movie, show);
                     System.out.println("Your recommended books are: " + recs.toString());
+                    break;
 
+                case 6: 
+                    System.out.println("Enter your favorite book:");
+                    String book = scanner.nextLine();
+                    System.out.println("Enter your favorite tv show");
+                    String tvshow = scanner.nextLine();
+                    ArrayList<String> bookrecs = socialNetwork.movieRecommender(tvshow, book);
+                    System.out.println("Your recommended books are: " + bookrecs.toString());
+                    break;
+
+                case 7: 
+                    GraphDisplay d4 = new GraphDisplay(socialNetwork.network);
+                    break;
+                    
                 case 0:
                     System.out.println("Exiting the program.");
                     System.exit(0);

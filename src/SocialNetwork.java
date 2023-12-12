@@ -118,26 +118,29 @@ public class SocialNetwork {
 
     }
 
-    public ArrayList<String> findMutualHobbie(String name, String yourHobbie, int degree) {
-        ArrayList<String> names = new ArrayList<>();
+    public HashSet<String> findMutualHobbie(String name, String yourHobbie, int degree) {
+        HashSet<String> names = new HashSet<>();
         if (!network.nodes().contains(name.toLowerCase())) {
             throw new RuntimeException("Name '" + name + "' does not exist in the network.");
         }
         //String yourHobbie = people.get(name)[6];
 
         for (String node : network.successors(name)) {
+            //System.out.println(node);
             if (people.containsKey(node)) {
                 String hobbie = people.get(node)[6];
-                System.out.println("hobbie:" + hobbie + " of " + node);
+                //System.out.println("hobbie:" + hobbie + " of " + node);
                 if (hobbie.equals(yourHobbie)) {
                     names.add(node);
                 }
-                if (degree > 1) {
-                    ArrayList<String> list = findMutualHobbie(node, yourHobbie, degree - 1);
+            }
+            if (degree > 1) {
+                    HashSet<String> list = findMutualHobbie(node, yourHobbie, degree - 1);
                     names.addAll(list);
                 }
-            }
         }
+        names.remove(name);
+        System.out.println("people who also like " + yourHobbie + " are: " + names.toString());
         return names;
     }
 
@@ -201,6 +204,7 @@ public class SocialNetwork {
             }
             System.out.println(
                     "Mutual friends of degree " + degree + " for " + name1 + " and " + name2 + ": " + mutualFriends);
+            mutualFriends.remove(name1);
             return mutualFriends;
         }
     }
@@ -210,8 +214,8 @@ public class SocialNetwork {
         // for(String node : test.network.nodes()) {
         // System.out.println(node);
         // }
-            ArrayList<String> hobbies = test.findMutualHobbie("karen bekhazj", "reading", 4);
-            System.out.println(hobbies.toString());
+            //HashSet<String> hobbies = test.findMutualHobbie("karen bekhazj", "reading", 4);
+            //System.out.println(hobbies.toString());
 
         // System.out.println(test.network);
 
@@ -227,14 +231,14 @@ public class SocialNetwork {
         // //test finding mutual friends method
         //test.findMutualFriends("lucia qin","lily smetzer", 1);
         //test.findMutualFriends("lucia qin","lily smetzer", 2);
-        test.findMutualFriends("lucia qin","hala maloul", 1);
-            test.findMutualFriends("lucia qin","hala maloul", 4);
+        //test.findMutualFriends("lucia qin","hala maloul", 1);
+         //   test.findMutualFriends("lucia qin","hala maloul", 4);
         ArrayList<String> books = test.bookRecommender("but i’m a cheerleader", "avatar the last air bender");
         System.out.println(books.toString());
 
 
-        // test.findHobbie("reading");
-
+        HashSet<String> muthob = test.findMutualHobbie("sophia manodori", "reading", 3);
+            System.out.println(muthob);
         // program
     }
 

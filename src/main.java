@@ -7,7 +7,7 @@ import javax.swing.plaf.synth.SynthToolTipUI;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashSet;
-
+/** main class running user interaction */
 public class Main {
     public static boolean yesNoReader (String input) {
         if(input.toLowerCase().equals("yes") || input.toLowerCase().equals("y")) {
@@ -18,6 +18,7 @@ public class Main {
             throw new RuntimeException("Unknown answer");
         }
     }
+    /** runs user interaction */
     public static void main(String[] args) {
         System.out.println("");
         System.out.println("Welcome to the Interactive Smith Social Network !");

@@ -117,7 +117,7 @@ public class SocialNetwork {
     public void findFriends(String name, int degree) {
 
     }
-
+    /** returns hashset of names with mutual movies */
     public HashSet<String> findMutualMovie(String name, String yourMovie, int degree) {
         HashSet<String> names = new HashSet<>();
         if (!network.nodes().contains(name.toLowerCase())) {
@@ -144,7 +144,7 @@ public class SocialNetwork {
         return names;
 
     }
-
+    /** returns hash set of people with the same hobbie, within a given degree of friends */
     public HashSet<String> findMutualHobbie(String name, String yourHobbie, int degree) {
         HashSet<String> names = new HashSet<>();
         if (!network.nodes().contains(name.toLowerCase())) {
@@ -171,7 +171,7 @@ public class SocialNetwork {
         // names.toString());
         return names;
     }
-
+    /** returns all people in the graph with the given hobbie*/
     public ArrayList<String> findHobbie(String hobbie) {
         ArrayList<String> names = new ArrayList<>();
         for (String node : network.nodes()) {
@@ -185,7 +185,7 @@ public class SocialNetwork {
         System.out.println(" People who like " + hobbie + " are: " + names);
         return names;
     }
-
+    /** returns hashset of names with the same favorite tv series, within a given degree of friendship */
     public HashSet<String> findMutualTVSeries(String name, String yourSeries, int degree) {
         HashSet<String> names = new HashSet<>();
         if (!network.nodes().contains(name.toLowerCase())) {
@@ -213,7 +213,7 @@ public class SocialNetwork {
         return names;
 
     }
-
+    /** returns hashset of names with the same favorite book, within a given degree of friendship */
     public HashSet<String> findMutualBook(String name,String yourBook, int degree) {
               HashSet<String> names = new HashSet<>();
         if (!network.nodes().contains(name.toLowerCase())) {
@@ -241,7 +241,7 @@ public class SocialNetwork {
         return names;
 
     }
-
+    /** returns hashset of names of mutual friends within a given degree of friendship */
     public Set<String> findMutualFriends(String name1, String name2, int degree) {
 
         // checks that the degree is more than 0
@@ -285,7 +285,7 @@ public class SocialNetwork {
             return mutualFriends;
         }
     }
-
+    /** runs tests */
     public static void main(String[] args) {
         SocialNetwork test = new SocialNetwork("Test.csv");
         // for(String node : test.network.nodes()) {

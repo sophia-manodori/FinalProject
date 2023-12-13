@@ -191,6 +191,49 @@ public class SocialNetwork {
         System.out.println(" People who like " + hobbie + " are: " + names);
         return names;
     }
+
+     public ArrayList<String> findBook(String book) {
+        ArrayList<String> names = new ArrayList<>();
+        for (String node : network.nodes()) {
+            if (people.containsKey(node)) {
+                if (people.get(node)[5].equals(book)) {
+                    names.add(node);
+                }
+            }
+        }
+        
+        System.out.println(" People who like " + book + " are: " + names);
+        return names;
+    }
+
+    public ArrayList<String> findTv(String tv) {
+        ArrayList<String> names = new ArrayList<>();
+        for (String node : network.nodes()) {
+            if (people.containsKey(node)) {
+                if (people.get(node)[3].equals(tv)) {
+                    names.add(node);
+                }
+            }
+        }
+        
+        System.out.println(" People who like " + tv + " are: " + names);
+        return names;
+    }
+
+    public ArrayList<String> findMovie(String movie) {
+        ArrayList<String> names = new ArrayList<>();
+        for (String node : network.nodes()) {
+            if (people.containsKey(node)) {
+                if (people.get(node)[4].equals(movie)) {
+                    names.add(node);
+                }
+            }
+        }
+        
+        System.out.println(" People who like " + movie + " are: " + names);
+        return names;
+    }
+
     /** returns hashset of names with the same favorite tv series, within a given degree of friendship */
     public HashSet<String> findMutualTVSeries(String name, String yourSeries, int degree) {
         HashSet<String> names = new HashSet<>();

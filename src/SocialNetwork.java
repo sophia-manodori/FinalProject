@@ -134,7 +134,7 @@ public class SocialNetwork {
                 }
             }
             if (degree > 1) {
-                HashSet<String> list = findMutualHobbie(node, yourMovie, degree - 1);
+                HashSet<String> list = findMutualMovie(node, yourMovie, degree - 1);
                 names.addAll(list);
             }
         }
@@ -203,7 +203,7 @@ public class SocialNetwork {
                 }
             }
             if (degree > 1) {
-                HashSet<String> list = findMutualHobbie(node, yourSeries, degree - 1);
+                HashSet<String> list = findMutualTVSeries(node, yourSeries, degree - 1);
                 names.addAll(list);
             }
         }
@@ -231,7 +231,7 @@ public class SocialNetwork {
                 }
             }
             if (degree > 1) {
-                HashSet<String> list = findMutualHobbie(node, yourBook, degree - 1);
+                HashSet<String> list = findMutualBook(node, yourBook, degree - 1);
                 names.addAll(list);
             }
         }

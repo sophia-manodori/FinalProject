@@ -34,7 +34,7 @@ public class SocialNetwork {
         while (file.hasNextLine()) {
             String line = file.nextLine().toLowerCase();
             String[] fields = line.split(" ,+|,+");
-            //System.out.println(fields[0]);
+            // System.out.println(fields[0]);
             people.put(fields[0], fields);
 
             for (int i = 0; i < 8; i++) {
@@ -64,34 +64,38 @@ public class SocialNetwork {
             }
         }
     }
-     /** takes a tv show and book and returns the favorite movies of the people who had that favorite tv show and book  */
+
+    /**
+     * takes a tv show and book and returns the favorite movies of the people who
+     * had that favorite tv show and book
+     */
     public ArrayList<String> movieRecommender(String tvShow, String book) {
         ArrayList<String> recs = new ArrayList<>();
-        for(String node : this.people.keySet()) {
-            if(this.people.get(node)[3].equals(tvShow) || this.people.get(node)[5].equals(book)) {
+        for (String node : this.people.keySet()) {
+            if (this.people.get(node)[3].equals(tvShow) || this.people.get(node)[5].equals(book)) {
                 recs.add(people.get(node)[4]);
             }
-        } 
+        }
         return recs;
     }
 
     public ArrayList<String> bookRecommender(String movie, String tvshow) {
         ArrayList<String> recs = new ArrayList<>();
-        for(String node : this.people.keySet()) {
-            if(this.people.get(node)[3].equals(tvshow) || this.people.get(node)[4].equals(movie)) {
+        for (String node : this.people.keySet()) {
+            if (this.people.get(node)[3].equals(tvshow) || this.people.get(node)[4].equals(movie)) {
                 recs.add(people.get(node)[5]);
             }
-        } 
+        }
         return recs;
     }
 
     public ArrayList<String> tvRecommender(String movie, String book) {
         ArrayList<String> recs = new ArrayList<>();
-        for(String node : this.people.keySet()) {
-            if(this.people.get(node)[5].equals(book) || this.people.get(node)[4].equals(movie)) {
+        for (String node : this.people.keySet()) {
+            if (this.people.get(node)[5].equals(book) || this.people.get(node)[4].equals(movie)) {
                 recs.add(people.get(node)[3]);
             }
-        } 
+        }
         return recs;
     }
 
@@ -114,7 +118,30 @@ public class SocialNetwork {
 
     }
 
-    public void findMutualMovie(String name1, String name2, int degree) {
+    public HashSet<String> findMutualMovie(String name, String yourMovie, int degree) {
+        HashSet<String> names = new HashSet<>();
+        if (!network.nodes().contains(name.toLowerCase())) {
+            throw new RuntimeException("Name '" + name + "' does not exist in the network.");
+        }
+
+        for (String node : network.successors(name)) {
+            // System.out.println(node);
+            if (people.containsKey(node)) {
+                String hobbie = people.get(node)[4];
+                // System.out.println("hobbie:" + hobbie + " of " + node);
+                if (hobbie.equals(yourMovie)) {
+                    names.add(node);
+                }
+            }
+            if (degree > 1) {
+                HashSet<String> list = findMutualHobbie(node, yourMovie, degree - 1);
+                names.addAll(list);
+            }
+        }
+        names.remove(name);
+        // System.out.println("people who also like " + yourHobbie + " are: " +
+        // names.toString());
+        return names;
 
     }
 
@@ -123,24 +150,25 @@ public class SocialNetwork {
         if (!network.nodes().contains(name.toLowerCase())) {
             throw new RuntimeException("Name '" + name + "' does not exist in the network.");
         }
-        //String yourHobbie = people.get(name)[6];
+        // String yourHobbie = people.get(name)[6];
 
         for (String node : network.successors(name)) {
-            //System.out.println(node);
+            // System.out.println(node);
             if (people.containsKey(node)) {
                 String hobbie = people.get(node)[6];
-                //System.out.println("hobbie:" + hobbie + " of " + node);
+                // System.out.println("hobbie:" + hobbie + " of " + node);
                 if (hobbie.equals(yourHobbie)) {
                     names.add(node);
                 }
             }
             if (degree > 1) {
-                    HashSet<String> list = findMutualHobbie(node, yourHobbie, degree - 1);
-                    names.addAll(list);
-                }
+                HashSet<String> list = findMutualHobbie(node, yourHobbie, degree - 1);
+                names.addAll(list);
+            }
         }
         names.remove(name);
-        //System.out.println("people who also like " + yourHobbie + " are: " + names.toString());
+        // System.out.println("people who also like " + yourHobbie + " are: " +
+        // names.toString());
         return names;
     }
 
@@ -158,11 +186,59 @@ public class SocialNetwork {
         return names;
     }
 
-    public void findMutualTVSeries(String name, int degree) {
+    public HashSet<String> findMutualTVSeries(String name, String yourSeries, int degree) {
+        HashSet<String> names = new HashSet<>();
+        if (!network.nodes().contains(name.toLowerCase())) {
+            throw new RuntimeException("Name '" + name + "' does not exist in the network.");
+        }
+        // String yourHobbie = people.get(name)[6];
+
+        for (String node : network.successors(name)) {
+            // System.out.println(node);
+            if (people.containsKey(node)) {
+                String hobbie = people.get(node)[3];
+                // System.out.println("hobbie:" + hobbie + " of " + node);
+                if (hobbie.equals(yourSeries)) {
+                    names.add(node);
+                }
+            }
+            if (degree > 1) {
+                HashSet<String> list = findMutualHobbie(node, yourSeries, degree - 1);
+                names.addAll(list);
+            }
+        }
+        names.remove(name);
+        // System.out.println("people who also like " + yourHobbie + " are: " +
+        // names.toString());
+        return names;
 
     }
 
-    public void findMutualBook(String name, int degree) {
+    public HashSet<String> findMutualBook(String name,String yourBook, int degree) {
+              HashSet<String> names = new HashSet<>();
+        if (!network.nodes().contains(name.toLowerCase())) {
+            throw new RuntimeException("Name '" + name + "' does not exist in the network.");
+        }
+        // String yourHobbie = people.get(name)[6];
+
+        for (String node : network.successors(name)) {
+            // System.out.println(node);
+            if (people.containsKey(node)) {
+                String hobbie = people.get(node)[5];
+                // System.out.println("hobbie:" + hobbie + " of " + node);
+                if (hobbie.equals(yourBook)) {
+                    names.add(node);
+                }
+            }
+            if (degree > 1) {
+                HashSet<String> list = findMutualHobbie(node, yourBook, degree - 1);
+                names.addAll(list);
+            }
+        }
+        names.remove(name);
+        // System.out.println("people who also like " + yourHobbie + " are: " +
+        // names.toString());
+        return names;
 
     }
 
@@ -184,42 +260,44 @@ public class SocialNetwork {
             }
             return null;
         } else {
-//this needs to be a set
+            // this needs to be a set
             Set<String> mutualFriends = new HashSet<>();
-            //Set<String> traversed = new HashSet<>();
+            // Set<String> traversed = new HashSet<>();
             // I think this is now finding everyone who has the name2 as a friend
             for (String node : network.successors(name1)) {
                 for (String friend : network.successors(node)) {
-                    //System.out.println(friend);
+                    // System.out.println(friend);
                     if (friend.equals(name2) && !friend.equals(name1)) {
                         mutualFriends.add(node);
                     }
                 }
-                if(degree>1) {
-                        Set<String> friends = findMutualFriends(node, name2, degree-1);
-                        //System.out.println(friends.toString());
-                        mutualFriends.addAll(friends);
-                    }
+                if (degree > 1) {
+                    Set<String> friends = findMutualFriends(node, name2, degree - 1);
+                    // System.out.println(friends.toString());
+                    mutualFriends.addAll(friends);
+                }
 
             }
-            //System.out.println(
-                  //  "Mutual friends of degree " + degree + " for " + name1 + " and " + name2 + ": " + mutualFriends);
+            // System.out.println(
+            // "Mutual friends of degree " + degree + " for " + name1 + " and " + name2 + ":
+            // " + mutualFriends);
             mutualFriends.remove(name1);
             return mutualFriends;
         }
     }
 
     public static void main(String[] args) {
-         SocialNetwork test = new SocialNetwork("Test.csv");
+        SocialNetwork test = new SocialNetwork("Test.csv");
         // for(String node : test.network.nodes()) {
         // System.out.println(node);
         // }
-            //HashSet<String> hobbies = test.findMutualHobbie("karen bekhazj", "reading", 4);
-            //System.out.println(hobbies.toString());
+        // HashSet<String> hobbies = test.findMutualHobbie("karen bekhazj", "reading",
+        // 4);
+        // System.out.println(hobbies.toString());
 
         // System.out.println(test.network);
 
-        //GraphDisplay d3 = new GraphDisplay(test.network);
+        // GraphDisplay d3 = new GraphDisplay(test.network);
 
         // ArrayList<String> majors = test.highlightMajor("computer science");
         // for(int i = 0; i< majors.size(); i++) {
@@ -229,17 +307,18 @@ public class SocialNetwork {
         // System.out.println(test.network.successors("lucia qin").toString());
         // System.out.println(test.network.successors("lily smetzer").toString());
         // //test finding mutual friends method
-        //test.findMutualFriends("lucia qin","lily smetzer", 1);
-        //test.findMutualFriends("lucia qin","lily smetzer", 2);
-        //test.findMutualFriends("lucia qin","hala maloul", 1);
-            //test.findMutualFriends("lucia qin","hala maloul", 4);
+        // test.findMutualFriends("lucia qin","lily smetzer", 1);
+        // test.findMutualFriends("lucia qin","lily smetzer", 2);
+        // test.findMutualFriends("lucia qin","hala maloul", 1);
+        // test.findMutualFriends("lucia qin","hala maloul", 4);
         ArrayList<String> books = test.bookRecommender("but i’m a cheerleader", "avatar the last air bender");
         System.out.println(books.toString());
 
-
         HashSet<String> muthob = test.findMutualHobbie("sophia manodori", "reading", 3);
-            //System.out.println(muthob);
-        // program
+        System.out.println(muthob);
+
+        // HashSet<String> muthob2 = test.findMutualBook("hala maloul", "like water for chocolate", 3);
+        //System.out.println(muthob2);
     }
 
 }

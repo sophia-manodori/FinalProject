@@ -34,10 +34,13 @@ public class Main {
             System.out.println("1. Display all nodes in the network");
             System.out.println("2. Find mutual friends between two people");
             System.out.println("3. Find people with a specific hobby");
-            System.out.println("4. Find mutual hobbies for a person");
-            System.out.println("5. Find book recommendations");
-            System.out.println("6. Find movie recommendations");
-            System.out.println("7. Display the social network");
+            System.out.println("4. Find people with the same hobby");
+            System.out.println("5. Find people with the same favorite book");
+            System.out.println("6. Find people with the same favorite movie");
+            System.out.println("7. Find people with the same favorite TV series");
+            System.out.println("8. Find book recommendations");
+            System.out.println("9. Find movie recommendations");
+            System.out.println("10. Display the social network");
             System.out.println("0. Exit");
 
             System.out.print("Enter your choice: ");
@@ -72,15 +75,53 @@ public class Main {
                     break;
 
                 case 4:
-                    System.out.print("Enter the person's name: ");
+                    System.out.print("What is your name: ");
                     String person = scanner.nextLine();
+                    System.out.println("What is your hobby?");
+                    String hobby = scanner.nextLine();
+                    System.out.print("Enter the degree: ");
+                    int hobbyDegree = scanner.nextInt();
+                    HashSet<String> hobbys = socialNetwork.findMutualHobbie(person, hobby, hobbyDegree);
+                    System.out.print("The people of degree " + hobbyDegree + " with the hobby "+hobby +"are:" + hobbys.toString());
+                    break;
+                case 5:
+                     System.out.print("What is your name: ");
+                    String name = scanner.nextLine();
+                    System.out.println("What is your favorite book ?");
+                    String mutualBook = scanner.nextLine();
                     System.out.print("Enter the degree: ");
                     degree = scanner.nextInt();
-                    HashSet<String> hobbys = socialNetwork.findMutualHobbie(person, socialNetwork.people.get(person)[6], degree);
-                    System.out.print("The people of degree " + degree + "with the hobbie "+ "are:" + hobbys.toString());
+                    HashSet<String> booksPeople = socialNetwork.findMutualBook(name, mutualBook, degree);
+                    System.out.print("The people of degree " + degree + " with "+mutualBook+ " as their favorite book are:" + booksPeople.toString());
                     break;
-                
-                case 5: 
+
+
+                case 6:   
+                    System.out.print("What is your name: ");
+                    String moviePerson = scanner.nextLine();
+                    System.out.println("What is your favorite movie?");
+                    String mutualMovie = scanner.nextLine();
+                    System.out.print("Enter the degree: ");
+                    degree = scanner.nextInt();
+                    HashSet<String> moviesPeople = socialNetwork.findMutualBook(moviePerson, mutualMovie, degree);
+                    System.out.print("The people of degree " + degree + " with "+mutualMovie+ " as their favorite book are:" + moviesPeople.toString());
+                    break;
+
+
+                case 7:
+
+                    System.out.print("What is your name: ");
+                    String SeriesPerson = scanner.nextLine();
+                    System.out.println("What is your favorite series?");
+                    String mutualSeries = scanner.nextLine();
+                    System.out.print("Enter the degree: ");
+                    degree = scanner.nextInt();
+                    HashSet<String> SeriesPeople = socialNetwork.findMutualBook(SeriesPerson, mutualSeries, degree);
+                    System.out.print("The people of degree " + degree + " with "+mutualSeries+ " as their favorite book are:" + SeriesPeople.toString());
+                    break;
+
+
+                case 8: 
                     System.out.println("Enter your favorite movie:");
                     String movie = scanner.nextLine();
                     System.out.println("Enter your favorite tv show");
@@ -89,7 +130,7 @@ public class Main {
                     System.out.println("Your recommended books are: " + recs.toString());
                     break;
 
-                case 6: 
+                case 9: 
                     System.out.println("Enter your favorite book:");
                     String book = scanner.nextLine();
                     System.out.println("Enter your favorite tv show");
@@ -98,7 +139,7 @@ public class Main {
                     System.out.println("Your recommended books are: " + bookrecs.toString());
                     break;
 
-                case 7: 
+                case 10: 
                     GraphDisplay d4 = new GraphDisplay(socialNetwork.network);
                     break;
                     

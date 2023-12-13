@@ -1,14 +1,13 @@
 import java.util.Scanner;
 
 import javax.sound.sampled.SourceDataLine;
-
-
 import javax.swing.plaf.synth.SynthToolTipUI;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashSet;
 /** main class running user interaction */
 public class Main {
+    /** takes in answer, returns true if yes */
     public static boolean yesNoReader (String input) {
         if(input.toLowerCase().equals("yes") || input.toLowerCase().equals("y")) {
             return true;

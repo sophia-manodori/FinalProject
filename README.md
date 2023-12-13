@@ -1,18 +1,20 @@
-## Getting Started
+## Development Journal
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Sunday Dec 3rd: decided to make our own data set.
 
-## Folder Structure
+Monday Dec 4th: made a survey to collect data(added more questions to the form to collect additional data allowing for more computations).
 
-The workspace contains two folders by default, where:
+Tuesday Dec 5th: read in the file to create a social network, added nodes and edges. Wrote add person method. 
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+Friday Dec 8th: created find hobby method, and all non-recursive methods. 
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+Saturday Dec 9th: Started working on recursive methods, and switched from using arraylist to hashset to avoid repeating values and for easy removal. 
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+Sunday Dec 10th: Finished mutual friends method. 
 
-## Dependency Management
+Monday Dec 11th: Cleaned data, made movie/book/tv recommendations methods. Made main with cases for interactions. 
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+Tuesday Dec 12: Finished main, finished recursive methods that use degree of friendship to search. 
+
+
+## Reflection

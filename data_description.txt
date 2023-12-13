@@ -15,4 +15,4 @@ Roomate's Name [7]
 Connection/Someone they know [8-17] (full name)
 
 Empty values are listed as "NA". We have a total of __ entries. All data is categorical, and only minor changes were made in order to make the data
-readable (i.e removing uneccesary spaces, correcting name spelling). 
+readable (i.e removing uneccesary spaces, correcting name spelling). When read in, all uneccesary spaces at the beginning and end of the words are removed. 

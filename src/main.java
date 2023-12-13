@@ -6,7 +6,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashSet;
 /** main class running user interaction */
-public class Main {
+public class main {
     /** takes in answer, returns true if yes */
     public static boolean yesNoReader (String input) {
         if(input.toLowerCase().equals("yes") || input.toLowerCase().equals("y")) {
@@ -39,8 +39,9 @@ public class Main {
             System.out.println("6. Find people with the same favorite movie");
             System.out.println("7. Find people with the same favorite TV series");
             System.out.println("8. Find book recommendations");
-            System.out.println("9. Find movie recommendations");
-            System.out.println("10. Display the social network");
+            System.out.println("9. Find TV Series recommendations");
+              System.out.println("10. Find movie recommendations");
+            System.out.println("11. Display the social network");
             System.out.println("0. Exit");
 
             System.out.print("Enter your choice: ");
@@ -129,8 +130,15 @@ public class Main {
                     ArrayList<String> recs = socialNetwork.bookRecommender(movie, show);
                     System.out.println("Your recommended books are: " + recs.toString());
                     break;
-
-                case 9: 
+                case 9:
+                     System.out.println("Enter your favorite movie:");
+                    String movie1= scanner.nextLine().toLowerCase();
+                    System.out.println("Enter your favorite book");
+                    String book1 = scanner.nextLine().toLowerCase();
+                    ArrayList<String> recs1 = socialNetwork.bookRecommender(movie1, book1);
+                    System.out.println("Your recommended TV series are: " + recs1.toString());
+                    break;
+                case 10: 
                     System.out.println("Enter your favorite book:");
                     String book = scanner.nextLine().toLowerCase();
                     System.out.println("Enter your favorite tv show");
@@ -139,7 +147,7 @@ public class Main {
                     System.out.println("Your recommended movies are: " + bookrecs.toString());
                     break;
 
-                case 10: 
+                case 11: 
                     GraphDisplay d4 = new GraphDisplay(socialNetwork.network);
                     break;
                     

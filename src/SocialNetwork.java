@@ -315,10 +315,10 @@ public class SocialNetwork {
         System.out.println(books.toString());
 
         HashSet<String> muthob = test.findMutualHobbie("sophia manodori", "reading", 3);
-        // System.out.println(muthob);
+        System.out.println(muthob);
 
         // HashSet<String> muthob2 = test.findMutualBook("hala maloul", "like water for chocolate", 3);
-        // System.out.println(muthob2);
+        //System.out.println(muthob2);
     }
 
 }

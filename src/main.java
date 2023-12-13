@@ -136,7 +136,7 @@ public class Main {
                     System.out.println("Enter your favorite tv show");
                     String tvshow = scanner.nextLine().toLowerCase();
                     ArrayList<String> bookrecs = socialNetwork.movieRecommender(tvshow, book);
-                    System.out.println("Your recommended books are: " + bookrecs.toString());
+                    System.out.println("Your recommended movies are: " + bookrecs.toString());
                     break;
 
                 case 10: 

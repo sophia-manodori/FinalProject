@@ -34,14 +34,15 @@ public class main {
             System.out.println("1. Display all nodes in the network");
             System.out.println("2. Find mutual friends between two people");
             System.out.println("3. Find people with a specific hobby");
-            System.out.println("4. Find people with the same hobby");
-            System.out.println("5. Find people with the same favorite book");
-            System.out.println("6. Find people with the same favorite movie");
-            System.out.println("7. Find people with the same favorite TV series");
-            System.out.println("8. Find book recommendations");
-            System.out.println("9. Find TV Series recommendations");
-              System.out.println("10. Find movie recommendations");
-            System.out.println("11. Display the social network");
+            System.out.println("4. Find people with a specific favorite tv show");
+            System.out.println("5. Find people with the same hobby");
+            System.out.println("6. Find people with the same favorite book");
+            System.out.println("7. Find people with the same favorite movie");
+            System.out.println("8. Find people with the same favorite TV series");
+            System.out.println("9. Find book recommendations");
+            System.out.println("10. Find TV Series recommendations");
+              System.out.println("11. Find movie recommendations");
+            System.out.println("12. Display the social network");
             System.out.println("0. Exit");
 
             System.out.print("Enter your choice: ");
@@ -76,6 +77,13 @@ public class main {
                     break;
 
                 case 4:
+                    System.out.print("Enter the tv show to search for: ");
+                    String tv = scanner.nextLine().toLowerCase();
+                    socialNetwork.findTv(tv);
+                   
+                    break;
+
+                case 5:
                     System.out.print("What is your name: ");
                     String person = scanner.nextLine().toLowerCase();
                     System.out.println("What is your hobby?");
@@ -85,7 +93,7 @@ public class main {
                     HashSet<String> hobbys = socialNetwork.findMutualHobbie(person, hobby, hobbyDegree);
                     System.out.print("The people of degree " + hobbyDegree + " with the hobby "+hobby +"are:" + hobbys.toString());
                     break;
-                case 5:
+                case 6:
                      System.out.print("What is your name: ");
                     String name = scanner.nextLine().toLowerCase();
                     System.out.println("What is your favorite book ?");
@@ -97,7 +105,7 @@ public class main {
                     break;
 
 
-                case 6:   
+                case 7:   
                     System.out.print("What is your name: ");
                     String moviePerson = scanner.nextLine().toLowerCase();
                     System.out.println("What is your favorite movie?");
@@ -105,11 +113,15 @@ public class main {
                     System.out.print("Enter the degree: ");
                     degree = scanner.nextInt();
                     HashSet<String> moviesPeople = socialNetwork.findMutualBook(moviePerson, mutualMovie, degree);
-                    System.out.print("The people of degree " + degree + " with "+mutualMovie+ " as their favorite book are:" + moviesPeople.toString());
+                    if(moviesPeople.size() ==0) {
+                        System.out.println("nobody likes this");
+                    } else {
+                        System.out.print("The people of degree " + degree + " with "+mutualMovie+ " as their favorite book are:" + moviesPeople.toString());
+                    }
                     break;
 
 
-                case 7:
+                case 8:
 
                     System.out.print("What is your name: ");
                     String SeriesPerson = scanner.nextLine().toLowerCase();
@@ -122,7 +134,7 @@ public class main {
                     break;
 
 
-                case 8: 
+                case 9: 
                     System.out.println("Enter your favorite movie:");
                     String movie = scanner.nextLine().toLowerCase();
                     System.out.println("Enter your favorite tv show");
@@ -130,7 +142,7 @@ public class main {
                     ArrayList<String> recs = socialNetwork.bookRecommender(movie, show);
                     System.out.println("Your recommended books are: " + recs.toString());
                     break;
-                case 9:
+                case 10:
                      System.out.println("Enter your favorite movie:");
                     String movie1= scanner.nextLine().toLowerCase();
                     System.out.println("Enter your favorite book");
@@ -138,7 +150,7 @@ public class main {
                     ArrayList<String> recs1 = socialNetwork.bookRecommender(movie1, book1);
                     System.out.println("Your recommended TV series are: " + recs1.toString());
                     break;
-                case 10: 
+                case 11: 
                     System.out.println("Enter your favorite book:");
                     String book = scanner.nextLine().toLowerCase();
                     System.out.println("Enter your favorite tv show");
@@ -147,7 +159,7 @@ public class main {
                     System.out.println("Your recommended movies are: " + bookrecs.toString());
                     break;
 
-                case 11: 
+                case 12: 
                     GraphDisplay d4 = new GraphDisplay(socialNetwork.network);
                     break;
                     

@@ -138,9 +138,7 @@ public class SocialNetwork {
                 names.addAll(list);
             }
         }
-        if(names.size()==0){
-            System.out.println("No one else likes this");
-        }
+  
         names.remove(name);
         // System.out.println("people who also like " + yourHobbie + " are: " +
         // names.toString());
@@ -169,9 +167,7 @@ public class SocialNetwork {
                 names.addAll(list);
             }
         }
-         if(names.size()==0){
-            System.out.println("No one else likes this");
-        }
+       
         names.remove(name);
         // System.out.println("people who also like " + yourHobbie + " are: " +
         // names.toString());
@@ -256,9 +252,7 @@ public class SocialNetwork {
                 names.addAll(list);
             }
         }
-         if(names.size()==0){
-            System.out.println("No one else likes this");
-        }
+        
         names.remove(name);
         // System.out.println("people who also like " + yourHobbie + " are: " +
         // names.toString());
@@ -287,9 +281,7 @@ public class SocialNetwork {
                 names.addAll(list);
             }
         }
-         if(names.size()==0){
-            System.out.println("No one else likes this");
-        }
+      
         names.remove(name);
         // System.out.println("people who also like " + yourHobbie + " are: " +
         // names.toString());

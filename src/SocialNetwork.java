@@ -332,6 +332,18 @@ public class SocialNetwork {
             return mutualFriends;
         }
     }
+    public void subFriends(String name) {
+        MutableGraph<String> subNetwork  = GraphBuilder.undirected().build();
+        subNetwork.addNode(name.toLowerCase());
+        if(!network.nodes().contains(name.toLowerCase())){
+            System.out.println("network does not contain that name");
+        }else {
+            for(String node : network.successors(name)) {
+                subNetwork.putEdge(name, node);
+            }
+            GraphDisplay d3 = new GraphDisplay(subNetwork);
+        }
+    }
     /** runs tests */
     public static void main(String[] args) {
         SocialNetwork test = new SocialNetwork("Test.csv");

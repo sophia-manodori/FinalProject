@@ -12,7 +12,6 @@ public class Demo {
 
             ArrayList<String> majors = smith.highlightMajor("computer science");
             for(int i = 0; i< majors.size(); i++) {
-                System.out.println(majors.get(i));
                 d3.setColor(majors.get(i), Color.RED);
             }
             
@@ -30,12 +29,19 @@ public class Demo {
             HashSet<String> mutmovie = smith.findMutualMovie("sophia manodori", "cocaine bear", 3);
             System.out.println(mutmovie);
 
-            HashSet<String> muttv = smith.findMutualMovie("sophia manodori", "ted lasso", 3);
+            HashSet<String> muttv = smith.findMutualTVSeries("sophia manodori", "ted lasso", 3);
             System.out.println(muttv);
 
-            //you can find people with the same mutual hobbie 
-            HashSet<String> hobbies = smith.findMutualHobbie("karen bekhazj", "reading", 4);
-            System.out.println(hobbies.toString());
+            //you can find all people who have a hobbie, book, tv or movie
+            ArrayList<String> hobbies = smith.findHobbie("reading");
+
+            ArrayList<String> peoplemovies= smith.findMovie("pride and prejudice");
+
+            ArrayList<String> peoplebooks= smith.findBook("good omens");
+
+
+            ArrayList<String> peopletv= smith.findTv("ted lasso");
+
 
             //you can find book,tv show and movie recommendations 
             ArrayList<String> books = smith.bookRecommender("but i’m a cheerleader", "avatar the last air bender");
@@ -47,6 +53,8 @@ public class Demo {
             ArrayList<String> tvshows = smith.tvRecommender("the grand budapest hotel", "all quiet on the western front");
             System.out.println(tvshows.toString());
 
+            //display just your friend group
+            smith.subFriends("hala maloul");
 
 
     }  

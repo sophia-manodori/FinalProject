@@ -18,3 +18,4 @@ Tuesday Dec 12: Finished main, finished recursive methods that use degree of fri
 
 
 ## Reflection
+Sophia's reflection: 

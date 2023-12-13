@@ -90,6 +90,8 @@ public class SocialNetwork {
     }
 
     public ArrayList<String> tvRecommender(String movie, String book) {
+        movie = movie.toLowerCase();
+        book = book.toLowerCase();
         ArrayList<String> recs = new ArrayList<>();
         for (String node : this.people.keySet()) {
             if (this.people.get(node)[5].equals(book) || this.people.get(node)[4].equals(movie)) {
@@ -104,6 +106,7 @@ public class SocialNetwork {
      * displayed network
      */
     public ArrayList<String> highlightMajor(String major) {
+        major = major.toLowerCase();
         ArrayList<String> names = new ArrayList<>();
         for (String node : network.nodes()) {
             if (people.containsKey(node) && people.get(node)[2].equals(major)) {
@@ -119,6 +122,8 @@ public class SocialNetwork {
     }
     /** returns hashset of names with mutual movies */
     public HashSet<String> findMutualMovie(String name, String yourMovie, int degree) {
+        name = name.toLowerCase();
+        yourMovie = yourMovie.toLowerCase();
         HashSet<String> names = new HashSet<>();
         if (!network.nodes().contains(name.toLowerCase())) {
             throw new RuntimeException("Name '" + name + "' does not exist in the network.");
@@ -147,6 +152,8 @@ public class SocialNetwork {
     }
     /** returns hash set of people with the same hobbie, within a given degree of friends */
     public HashSet<String> findMutualHobbie(String name, String yourHobbie, int degree) {
+        name = name.toLowerCase();
+        yourHobbie = yourHobbie.toLowerCase();
         HashSet<String> names = new HashSet<>();
         if (!network.nodes().contains(name.toLowerCase())) {
             throw new RuntimeException("Name '" + name + "' does not exist in the network.");
@@ -175,6 +182,7 @@ public class SocialNetwork {
     }
     /** returns all people in the graph with the given hobbie*/
     public ArrayList<String> findHobbie(String hobbie) {
+        hobbie = hobbie.toLowerCase();
         ArrayList<String> names = new ArrayList<>();
         for (String node : network.nodes()) {
             if (people.containsKey(node)) {
@@ -183,12 +191,16 @@ public class SocialNetwork {
                 }
             }
         }
-
-        System.out.println(" People who like " + hobbie + " are: " + names);
+        if(names.size() ==0 ){
+            System.out.println("nobody likes that.");
+        } else {
+            System.out.println(" People who like " + hobbie + " are: " + names);
+        }
         return names;
     }
 
      public ArrayList<String> findBook(String book) {
+        book = book.toLowerCase();
         ArrayList<String> names = new ArrayList<>();
         for (String node : network.nodes()) {
             if (people.containsKey(node)) {
@@ -197,12 +209,16 @@ public class SocialNetwork {
                 }
             }
         }
-        
-        System.out.println(" People who like " + book + " are: " + names);
+        if(names.size() ==0 ){
+            System.out.println("nobody likes that.");
+        } else {
+            System.out.println(" People who like " + book + " are: " + names);
+        }
         return names;
     }
 
     public ArrayList<String> findTv(String tv) {
+        tv = tv.toLowerCase();
         ArrayList<String> names = new ArrayList<>();
         for (String node : network.nodes()) {
             if (people.containsKey(node)) {
@@ -211,12 +227,16 @@ public class SocialNetwork {
                 }
             }
         }
-        
-        System.out.println(" People who like " + tv + " are: " + names);
+        if(names.size() ==0 ){
+            System.out.println("nobody likes that.");
+        }else {
+            System.out.println(" People who like " + tv + " are: " + names);
+        }
         return names;
     }
 
     public ArrayList<String> findMovie(String movie) {
+        movie.toLowerCase();
         ArrayList<String> names = new ArrayList<>();
         for (String node : network.nodes()) {
             if (people.containsKey(node)) {
@@ -225,13 +245,18 @@ public class SocialNetwork {
                 }
             }
         }
-        
-        System.out.println(" People who like " + movie + " are: " + names);
+        if(names.size() ==0 ){
+            System.out.println("nobody likes that.");
+        } else {
+            System.out.println(" People who like " + movie + " are: " + names);
+        }
         return names;
     }
 
     /** returns hashset of names with the same favorite tv series, within a given degree of friendship */
     public HashSet<String> findMutualTVSeries(String name, String yourSeries, int degree) {
+        name = name.toLowerCase();
+        yourSeries = name.toLowerCase();
         HashSet<String> names = new HashSet<>();
         if (!network.nodes().contains(name.toLowerCase())) {
             throw new RuntimeException("Name '" + name + "' does not exist in the network.");
@@ -261,6 +286,8 @@ public class SocialNetwork {
     }
     /** returns hashset of names with the same favorite book, within a given degree of friendship */
     public HashSet<String> findMutualBook(String name,String yourBook, int degree) {
+        name = name.toLowerCase();
+        yourBook = yourBook.toLowerCase();
               HashSet<String> names = new HashSet<>();
         if (!network.nodes().contains(name.toLowerCase())) {
             throw new RuntimeException("Name '" + name + "' does not exist in the network.");
@@ -290,7 +317,8 @@ public class SocialNetwork {
     }
     /** returns hashset of names of mutual friends within a given degree of friendship */
     public Set<String> findMutualFriends(String name1, String name2, int degree) {
-
+        name1 = name1.toLowerCase();
+        name2 = name2.toLowerCase();
         // checks that the degree is more than 0
         if (degree <= 0) {
             System.out.println("The degree should be greater than 0.");
@@ -333,6 +361,7 @@ public class SocialNetwork {
         }
     }
     public void subFriends(String name) {
+        name = name.toLowerCase();
         MutableGraph<String> subNetwork  = GraphBuilder.undirected().build();
         subNetwork.addNode(name.toLowerCase());
         if(!network.nodes().contains(name.toLowerCase())){

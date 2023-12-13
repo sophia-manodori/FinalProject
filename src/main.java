@@ -57,9 +57,9 @@ public class Main {
 
                 case 2:
                     System.out.print("Enter the first person's name: ");
-                    String name1 = scanner.nextLine();
+                    String name1 = scanner.nextLine().toLowerCase();
                     System.out.print("Enter the second person's name: ");
-                    String name2 = scanner.nextLine();
+                    String name2 = scanner.nextLine().toLowerCase();
                     System.out.print("Enter the degree: ");
                     int degree = scanner.nextInt();
                     HashSet<String> mutuals = (HashSet<String>)socialNetwork.findMutualFriends(name1, name2, degree);
@@ -69,16 +69,16 @@ public class Main {
 
                 case 3:
                     System.out.print("Enter the hobby to search for: ");
-                    String hobbie = scanner.nextLine();
+                    String hobbie = scanner.nextLine().toLowerCase();
                     socialNetwork.findHobbie(hobbie);
                    
                     break;
 
                 case 4:
                     System.out.print("What is your name: ");
-                    String person = scanner.nextLine();
+                    String person = scanner.nextLine().toLowerCase();
                     System.out.println("What is your hobby?");
-                    String hobby = scanner.nextLine();
+                    String hobby = scanner.nextLine().toLowerCase();
                     System.out.print("Enter the degree: ");
                     int hobbyDegree = scanner.nextInt();
                     HashSet<String> hobbys = socialNetwork.findMutualHobbie(person, hobby, hobbyDegree);
@@ -86,9 +86,9 @@ public class Main {
                     break;
                 case 5:
                      System.out.print("What is your name: ");
-                    String name = scanner.nextLine();
+                    String name = scanner.nextLine().toLowerCase();
                     System.out.println("What is your favorite book ?");
-                    String mutualBook = scanner.nextLine();
+                    String mutualBook = scanner.nextLine().toLowerCase();
                     System.out.print("Enter the degree: ");
                     degree = scanner.nextInt();
                     HashSet<String> booksPeople = socialNetwork.findMutualBook(name, mutualBook, degree);
@@ -98,9 +98,9 @@ public class Main {
 
                 case 6:   
                     System.out.print("What is your name: ");
-                    String moviePerson = scanner.nextLine();
+                    String moviePerson = scanner.nextLine().toLowerCase();
                     System.out.println("What is your favorite movie?");
-                    String mutualMovie = scanner.nextLine();
+                    String mutualMovie = scanner.nextLine().toLowerCase();
                     System.out.print("Enter the degree: ");
                     degree = scanner.nextInt();
                     HashSet<String> moviesPeople = socialNetwork.findMutualBook(moviePerson, mutualMovie, degree);
@@ -111,9 +111,9 @@ public class Main {
                 case 7:
 
                     System.out.print("What is your name: ");
-                    String SeriesPerson = scanner.nextLine();
+                    String SeriesPerson = scanner.nextLine().toLowerCase();
                     System.out.println("What is your favorite series?");
-                    String mutualSeries = scanner.nextLine();
+                    String mutualSeries = scanner.nextLine().toLowerCase();
                     System.out.print("Enter the degree: ");
                     degree = scanner.nextInt();
                     HashSet<String> SeriesPeople = socialNetwork.findMutualBook(SeriesPerson, mutualSeries, degree);
@@ -123,18 +123,18 @@ public class Main {
 
                 case 8: 
                     System.out.println("Enter your favorite movie:");
-                    String movie = scanner.nextLine();
+                    String movie = scanner.nextLine().toLowerCase();
                     System.out.println("Enter your favorite tv show");
-                    String show = scanner.nextLine();
+                    String show = scanner.nextLine().toLowerCase();
                     ArrayList<String> recs = socialNetwork.bookRecommender(movie, show);
                     System.out.println("Your recommended books are: " + recs.toString());
                     break;
 
                 case 9: 
                     System.out.println("Enter your favorite book:");
-                    String book = scanner.nextLine();
+                    String book = scanner.nextLine().toLowerCase();
                     System.out.println("Enter your favorite tv show");
-                    String tvshow = scanner.nextLine();
+                    String tvshow = scanner.nextLine().toLowerCase();
                     ArrayList<String> bookrecs = socialNetwork.movieRecommender(tvshow, book);
                     System.out.println("Your recommended books are: " + bookrecs.toString());
                     break;

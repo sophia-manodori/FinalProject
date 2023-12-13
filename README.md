@@ -8,7 +8,7 @@ Tuesday Dec 5th: read in the file to create a social network, added nodes and ed
 
 Friday Dec 8th: created find hobby method, and all non-recursive methods. 
 
-Saturday Dec 9th: Started working on recursive methods, and switched from using arraylist to hashset to avoid repeating values and for easy removal. 
+Saturday Dec 9th: Started working on recursive methods, and switched from using arraylist to hashset to avoid repeating values and for easy removal. We chose this mainly to ensure that with recursive methods that may traverse the same nodes several times, it wouldn't have an repeating name.
 
 Sunday Dec 10th: Finished mutual friends method. 
 

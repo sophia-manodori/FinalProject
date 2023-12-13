@@ -138,6 +138,9 @@ public class SocialNetwork {
                 names.addAll(list);
             }
         }
+        if(names.size()==0){
+            System.out.println("No one else likes this");
+        }
         names.remove(name);
         // System.out.println("people who also like " + yourHobbie + " are: " +
         // names.toString());
@@ -165,6 +168,9 @@ public class SocialNetwork {
                 HashSet<String> list = findMutualHobbie(node, yourHobbie, degree - 1);
                 names.addAll(list);
             }
+        }
+         if(names.size()==0){
+            System.out.println("No one else likes this");
         }
         names.remove(name);
         // System.out.println("people who also like " + yourHobbie + " are: " +
@@ -207,6 +213,9 @@ public class SocialNetwork {
                 names.addAll(list);
             }
         }
+         if(names.size()==0){
+            System.out.println("No one else likes this");
+        }
         names.remove(name);
         // System.out.println("people who also like " + yourHobbie + " are: " +
         // names.toString());
@@ -234,6 +243,9 @@ public class SocialNetwork {
                 HashSet<String> list = findMutualBook(node, yourBook, degree - 1);
                 names.addAll(list);
             }
+        }
+         if(names.size()==0){
+            System.out.println("No one else likes this");
         }
         names.remove(name);
         // System.out.println("people who also like " + yourHobbie + " are: " +

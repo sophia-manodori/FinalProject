@@ -91,7 +91,10 @@ public class main {
                     System.out.print("Enter the degree: ");
                     int hobbyDegree = scanner.nextInt();
                     HashSet<String> hobbys = socialNetwork.findMutualHobbie(person, hobby, hobbyDegree);
-                    System.out.print("The people of degree " + hobbyDegree + " with the hobby "+hobby +"are:" + hobbys.toString());
+                    if(hobbys.size() ==0) {
+                    System.out.println("nobody likes this");
+                    } else {
+                    System.out.print("The people of degree " + hobbyDegree + " with the hobby "+hobby +"are:" + hobbys.toString());}
                     break;
                 case 6:
                      System.out.print("What is your name: ");
@@ -101,7 +104,10 @@ public class main {
                     System.out.print("Enter the degree: ");
                     degree = scanner.nextInt();
                     HashSet<String> booksPeople = socialNetwork.findMutualBook(name, mutualBook, degree);
-                    System.out.print("The people of degree " + degree + " with "+mutualBook+ " as their favorite book are:" + booksPeople.toString());
+                       if(booksPeople.size() ==0) {
+                        System.out.println("nobody likes this");
+                    } else {
+                    System.out.print("The people of degree " + degree + " with "+mutualBook+ " as their favorite book are:" + booksPeople.toString());}
                     break;
 
 
@@ -124,13 +130,16 @@ public class main {
                 case 8:
 
                     System.out.print("What is your name: ");
-                    String SeriesPerson = scanner.nextLine().toLowerCase();
+                    String seriesPerson = scanner.nextLine().toLowerCase();
                     System.out.println("What is your favorite series?");
                     String mutualSeries = scanner.nextLine().toLowerCase();
                     System.out.print("Enter the degree: ");
                     degree = scanner.nextInt();
-                    HashSet<String> SeriesPeople = socialNetwork.findMutualBook(SeriesPerson, mutualSeries, degree);
-                    System.out.print("The people of degree " + degree + " with "+mutualSeries+ " as their favorite book are:" + SeriesPeople.toString());
+                    HashSet<String> seriesPeople = socialNetwork.findMutualBook(seriesPerson, mutualSeries, degree);
+                    if(seriesPeople.size() ==0) {
+                     System.out.println("nobody likes this");
+                    } else {
+                    System.out.print("The people of degree " + degree + " with "+mutualSeries+ " as their favorite book are:" + seriesPeople.toString());}
                     break;
 
 

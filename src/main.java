@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 /** main class running user interaction */
 
-public class main {
+public class Main {
     /** takes in answer, returns true if yes */
     public static boolean yesNoReader (String input) {
         if(input.toLowerCase().equals("yes") || input.toLowerCase().equals("y")) {
@@ -66,7 +66,11 @@ public class main {
                     System.out.print("Enter the degree: ");
                     int degree = scanner.nextInt();
                     HashSet<String> mutuals = (HashSet<String>)socialNetwork.findMutualFriends(name1, name2, degree);
-                     System.out.print("The mutual friends of " + name1 + "and "+ name2 + "are:" + mutuals.toString());
+                    if(mutuals.size() == 0) {
+                        System.out.println(name1 + " and " + name2 + " have no friends in common." );
+                    }else{
+                        System.out.print("The mutual friends of " + name1 +  "and "+ name2 + "are: " + mutuals.toString());
+                    }
 
                     break;
 
@@ -93,9 +97,9 @@ public class main {
                     int hobbyDegree = scanner.nextInt();
                     HashSet<String> hobbys = socialNetwork.findMutualHobbie(person, hobby, hobbyDegree);
                     if(hobbys.size() ==0) {
-                    System.out.println("nobody likes this");
+                        System.out.println("nobody likes this");
                     } else {
-                    System.out.print("The people of degree " + hobbyDegree + " with the hobby "+hobby +"are:" + hobbys.toString());}
+                        System.out.print("The people of degree " + hobbyDegree + " with the hobby "+hobby +"are:" + hobbys.toString());}
                     break;
                 case 6:
                      System.out.print("What is your name: ");
@@ -105,10 +109,10 @@ public class main {
                     System.out.print("Enter the degree: ");
                     degree = scanner.nextInt();
                     HashSet<String> booksPeople = socialNetwork.findMutualBook(name, mutualBook, degree);
-                       if(booksPeople.size() ==0) {
+                    if(booksPeople.size() ==0) {
                         System.out.println("nobody likes this");
                     } else {
-                    System.out.print("The people of degree " + degree + " with "+mutualBook+ " as their favorite book are:" + booksPeople.toString());}
+                        System.out.print("The people of degree " + degree + " with "+mutualBook+ " as their favorite book are:" + booksPeople.toString());}
                     break;
 
 
@@ -150,16 +154,24 @@ public class main {
                     System.out.println("Enter your favorite tv show");
                     String show = scanner.nextLine().toLowerCase();
                     ArrayList<String> recs = socialNetwork.bookRecommender(movie, show);
-                    System.out.println("Your recommended books are: " + recs.toString());
+                    if(recs.size() ==0) {
+                        System.out.println("We have insufficient data to make recommendations based on your favorites. Nobody else likes those...");
+                    } else{
+                        System.out.println("Your recommended books are: " + recs.toString());
+                    }
                     break;
-                    
+
                 case 10:
                      System.out.println("Enter your favorite movie:");
                     String movie1= scanner.nextLine().toLowerCase();
                     System.out.println("Enter your favorite book");
                     String book1 = scanner.nextLine().toLowerCase();
                     ArrayList<String> recs1 = socialNetwork.bookRecommender(movie1, book1);
-                    System.out.println("Your recommended TV series are: " + recs1.toString());
+                    if(recs1.size() ==0) {
+                        System.out.println("We have insufficient data to make recommendations based on your favorites. Nobody else likes those...");
+                    } else{
+                        System.out.println("Your recommended TV series are: " + recs1.toString());
+                    }
                     break;
 
                 case 11: 
@@ -168,7 +180,11 @@ public class main {
                     System.out.println("Enter your favorite tv show");
                     String tvshow = scanner.nextLine().toLowerCase();
                     ArrayList<String> bookrecs = socialNetwork.movieRecommender(tvshow, book);
-                    System.out.println("Your recommended movies are: " + bookrecs.toString());
+                    if(bookrecs.size() ==0) {
+                        System.out.println("We have insufficient data to make recommendations based on your favorites. Nobody else likes those...");
+                    } else{
+                        System.out.println("Your recommended movies are: " + bookrecs.toString());
+                    }
                     break;
 
                 case 12: 

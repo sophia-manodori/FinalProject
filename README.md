@@ -18,4 +18,4 @@ Tuesday Dec 12: Finished main, finished recursive methods that use degree of fri
 
 
 ## Reflection
-Sophia's reflection: I had a lot of fun on this assignment. It was nice to apply the things we've been learning in class to a project that is so implementable in my daily life. Modeling my and many other people's friend groups was a lot of fun, and it was really nice to see people actually find their mutual friends and get excitied about it. I was also really fun to see things like graphs, arrays, hashmaps, and recursion all get implemented in one place. 
+Sophia's reflection: I had a lot of fun on this assignment. It was nice to apply the things we've been learning in class to a project that is so implementable in my daily life. Modeling my and many other people's friend groups was a lot of fun, and it was really nice to see people actually find their mutual friends and get excitied about it. I was also really fun to see things like graphs, arrays, hashmaps, and recursion all get implemented in one place. Working with Hala was really fun too, she is super good at testing methods and finding what doesn't work and what does. 

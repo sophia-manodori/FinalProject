@@ -152,6 +152,7 @@ public class main {
                     ArrayList<String> recs = socialNetwork.bookRecommender(movie, show);
                     System.out.println("Your recommended books are: " + recs.toString());
                     break;
+                    
                 case 10:
                      System.out.println("Enter your favorite movie:");
                     String movie1= scanner.nextLine().toLowerCase();
@@ -160,6 +161,7 @@ public class main {
                     ArrayList<String> recs1 = socialNetwork.bookRecommender(movie1, book1);
                     System.out.println("Your recommended TV series are: " + recs1.toString());
                     break;
+
                 case 11: 
                     System.out.println("Enter your favorite book:");
                     String book = scanner.nextLine().toLowerCase();

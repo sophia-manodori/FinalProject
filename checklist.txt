@@ -5,7 +5,7 @@ __YES___ 2 pts: The program reads the data in and stores them in the form of a g
 __YES___ 2 pts: Graph is used to compute new information, including something significant about node connectivity.
 __YES__ 2 pts: The program's output communicates the results in a clear and unambiguous manner
 __YES___ 2 pts: The program is designed in a general way so that it would work for any dataset that follows the same format and could solve any problem of the category that your program is solving (e.g., nodes are not hardcoded) 
-_____ 2 pts: The usage of the program is clearly demonstrated in the `demo.txt` file (plus the `screenshot.png` file if applicable)
+___YES__ 2 pts: The usage of the program is clearly demonstrated in the `demo.txt` file (plus the `screenshot.png` file if applicable)
 ## General Items (10 pts):
 __YES___ 4 pts: Program compiles without errors or warnings.
 __YES__ 2 pts: Executes fully & consistently without crashing (exception/freeze).

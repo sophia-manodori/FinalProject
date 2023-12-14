@@ -6,6 +6,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashSet;
 /** main class running user interaction */
+
 public class main {
     /** takes in answer, returns true if yes */
     public static boolean yesNoReader (String input) {
